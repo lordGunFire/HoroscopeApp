@@ -1,0 +1,72 @@
+package com.app.demo.keonh.futurism;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+
+/*** Created by keonh on 5/19/2017.*/
+public class DailyScope extends AppCompatActivity {
+    //private DatabaseReference mDatabase;
+    // ArrayList<String> textBank  = new ArrayList<String>(12);
+    private Firebase ref;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.daily_scope);
+        Firebase.setAndroidContext(this);
+        final TextView text = (TextView) findViewById(R.id.horoscopeText);
+        Firebase ref = new Firebase(Config.FIREBASE_URL);
+        final com.firebase.client.ValueEventListener newCon = ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                HashMap<String, Object> data = (HashMap<String, Object>) dataSnapshot.getValue();
+                String newCon = (String) data.get("newCon");
+                text.setText(newCon);
+            }
+
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+            
+            public void onCancelled() {
+                onCancelled();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) { //ERROR IS HERE. IN NEED OF ASSISTANCE
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+        // handle.postDelayed(instructions,2000);  //86400000
+
+
+
+}
