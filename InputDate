@@ -29,7 +29,7 @@ public class InputDate extends AppCompatActivity {
                     int day = dateSelect.getDayOfMonth();
                     int month = dateSelect.getMonth();
                     checkDate(month, day);
-                    //startActivity(new Intent(InputDate.this, EditProfile.class));
+                    startActivity(new Intent(InputDate.this, DailyScope.class));
                 }
             }
         });
@@ -38,31 +38,52 @@ public class InputDate extends AppCompatActivity {
     public void checkDate(int month, int day) {
         if ( month == 11 && day >=22 && day <= 31 || (month == 0 && day <= 1 && day <= 19)) {
             //CAPICORN
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Capicorn! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 0 && day >= 20 && day <= 31) || (month == 1 && day >= 1 && day <= 18)) {
             //AQUARIUS
+            Toast toast = Toast.makeText(getApplicationContext(), "You're An Aquarius! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 1 && day >= 19 && day <= 29) || (month == 2 && day >= 1 && day <= 20)) {
             //PISCES
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Pisces! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ( month == 2 && day >= 21 && day <= 31 || month == 3 && day>= 1 && day <= 19) {
             //ARIES
             Toast toast = Toast.makeText(getApplicationContext(), "You're An Aries! Generating Your Horoscope...", Toast.LENGTH_SHORT);
             toast.show();
-            startActivity(new Intent(InputDate.this, DailyScope.class));
         } else if ((month == 3 && day >= 20 && day <= 30) || (month == 4 && day >= 1 && day <= 20)) {
             //TAURUS
+            Toast toast = Toast.makeText(getApplicationContext(), "You're An Taurus! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 4 && day >= 21 && day <= 31) || (month == 5 && day >= 1 && day <= 20)) {
             //GEMINI
+            Toast toast = Toast.makeText(getApplicationContext(), "You're An Gemini! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 5 && day >= 21 && day <= 30) || (month == 6 && day >= 1 && day <= 22)) {
             //CANCER
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Cancer! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 6 && day >= 23 && day <= 31) || (month == 7 && day >= 1 && day <= 22)) {
             //LEO
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Leo! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 7 && day >= 23 && day <= 31) || (month == 8 && day >= 1 && day <= 22)) {
             //VIRGO
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Virgo! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 8 && day >= 23 && day <= 30) || (month == 9 && day >= 1 && day <= 22)) {
             //LIBRA
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Libra! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 9 && day >= 23 && day <= 31) || (month == 10 && day >= 1 && day <= 21)) {
             //SCORPIO
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Scorpio! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         } else if ((month == 10 && day >= 22 && day <= 30) || (month == 11 && day >= 1 && day <= 21)) {
             //SAGITTARIUS
+            Toast toast = Toast.makeText(getApplicationContext(), "You're A Sagittarius! Generating Your Horoscope...", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }
