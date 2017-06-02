@@ -1,12 +1,13 @@
 package com.app.demo.keonh.futurism;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//import com.firebase.client.Firebase;
-//import com.firebase.client.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -22,9 +23,8 @@ import java.util.HashMap;
 
 /*** Created by keonh on 5/19/2017.*/
 public class DailyScope extends AppCompatActivity {
-    //private DatabaseReference mDatabase;
-    // ArrayList<String> textBank  = new ArrayList<String>(12);
-   // private Firebase ref;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +34,21 @@ public class DailyScope extends AppCompatActivity {
         firebaseDatabase.getReferenceFromUrl("https://horoscope-b1647.firebaseio.com/");
         final TextView text = (TextView) findViewById(R.id.horoscopeText);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        AlertDialog.Builder builder = new AlertDialog.Builder(DailyScope.this);
+
+        View view = LayoutInflater.from(DailyScope.this).inflate(R.layout.activity_horoscope, null);//Prevents NullPointException
+        builder.setView(view);
+        DatePicker dateDay = (DatePicker) view.findViewById(R.id.selectDate);
+        int dayofMonth = dateDay.getDayOfMonth();   //Sets the variable to the current day of the month,
+        //to allow for changing messages
+
 
         // Get the row named "1" and listen to its value
-        db.getRoot().child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        db.getRoot().child("" + dayofMonth).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 // Now that you got the value, convert it into a string
                 String value = dataSnapshot.getValue().toString();
-
-                // Display the string
-                Toast.makeText(DailyScope.this, "The DB value at 1 is " + value, Toast.LENGTH_SHORT).show();
                 text.setText(value);
             }
 
@@ -54,19 +58,4 @@ public class DailyScope extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-    // handle.postDelayed(instructions,2000);  //86400000
-
-
-
 }
